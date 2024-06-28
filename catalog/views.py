@@ -36,4 +36,12 @@ class AuthorListView(generic.ListView):
 class AuthorDetailView(generic.DetailView):
     model = Author
 
+class GenreListView(generic.ListView):
+    model = Genre
+    paginate_by = 2
+
+class GenreDetailView(generic.DetailView):
+    model = Genre
+
+
 
