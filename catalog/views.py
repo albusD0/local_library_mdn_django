@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 
 from .models import Book, Author, BookInstance, Genre
 
@@ -46,6 +47,15 @@ class GenreListView(generic.ListView):
 
 class GenreDetailView(generic.DetailView):
     model = Genre
+
+#@login_required
+#def user_logout(request):
+#    logout(request)
+#    return render(request, 'registration/logged_out.html', {})
+
+'''def post_list(request):
+    genres = Genre.objects.all
+    return render(request, '/genre_list.html', {'genres' : genres})'''
 
 
 
