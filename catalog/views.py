@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -63,6 +64,17 @@ class GenreListView(generic.ListView):
 
 class GenreDetailView(generic.DetailView):
     model = Genre
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        books_by_genre = Book.objects.filter(genre=self.kwargs['pk'])
+        context['books_by_genre'] = books_by_genre
+        authors = set()
+        for book in books_by_genre:
+            authors.add(book.author)
+        context['books_by_author'] = authors
+        return context
+
 
 from django.contrib.auth.mixins import PermissionRequiredMixin
 

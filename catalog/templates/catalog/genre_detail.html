@@ -2,9 +2,24 @@
 
 {% block content %}
   <h1>Genre: {{ genre }} </h1>
+
+<h3>Books by genre</h3>
+<div>
+{% for book in books_by_genre %}
 <ul>
-    {% for book in genre.book_set.all %}
     <li><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></li>
-    {% endfor %}
 </ul>
+{% endfor %}
+</div>
+
+<h3>Authors by genre</h3>
+<div>
+{% for author in books_by_author %}
+<ul>
+    <li><a href="{{ author.get_absolute_url }}">{{ author.first_name}} {{ author.last_name }}</a></li>
+</ul>
+{% endfor %}
+</div>
+
+
 {% endblock %}
